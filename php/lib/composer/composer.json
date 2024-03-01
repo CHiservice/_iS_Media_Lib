@@ -1,0 +1,12 @@
+{
+    "name": "christianeherzog/test",
+    "authors": [
+        {
+            "name": "CHiservice",
+            "email": "141728721+CHiservice@users.noreply.github.com"
+        }
+    ],
+    "require": {
+        "smalot/pdfparser": "^2.8"
+    }
+}

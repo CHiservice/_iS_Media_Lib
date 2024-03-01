@@ -1,0 +1,79 @@
+%data-table {
+	& {
+		position: relative;
+		width: 100%;
+
+		.dataTables_length,
+		.dataTables_filter {
+			display: inline-block;
+			width: 50%;
+		} // .dataTables_length, .dataTables_filter
+
+		.dataTables_filter label input {
+			margin-left: 5px;
+		}
+
+		.dataTables_processing {
+			bottom: 0;
+			left: 0;
+			position: absolute;
+			right: 0;
+			top: 0;
+
+			.iservice-loader {
+				position: absolute;
+				left: 50%;
+				top: 50%;
+			} // .iservice-loader
+		} // .dataTables_processing
+
+		table {
+			margin: 10px 0;
+			width: 100% !important;
+
+			thead th {
+				cursor: pointer;
+				
+				&::after {
+					font-family: 'media-lib';
+					font-size: 18px;
+					margin-left: 5px;
+				} // &::after
+
+				&.sorting_desc::after {
+					content: '\e901';
+				}
+
+				&.sorting_asc::after {
+					content: '\e900';
+				}
+			} // thead th
+		} // table
+
+		.dataTables_paginate {
+			margin: 5px 0;
+			
+			a {
+				cursor: pointer;
+				margin-right: 5px;
+
+				&.disabled {
+					display: none;
+				} // &.disabled
+			} // a
+
+			span a {
+				background-color: $pagination-button-bg;
+				border: solid $pagination-button-border 1px;
+				display: inline-table;
+				padding: 5px;
+				text-align: center;
+				width: 30px;
+
+				&.current {
+					background-color: $pagination-button-current-bg;
+				}
+			} // span a 
+		} // .dataTables_paginate
+	} // &
+} // %data-table

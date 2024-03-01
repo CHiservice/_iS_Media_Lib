@@ -1,0 +1,240 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: iS_Medialib\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-07-23 11:27+1000\n"
+"PO-Revision-Date: 2019-07-23 11:27+1000\n"
+"Last-Translator: Chritsiane Herzog <ch@iservice.at>\n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e;esc_attr__;esc_attr_e;esc_html__;esc_html_e;_x;"
+"_ex;esc_attr_x;_n;_nx;_n_noop\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 2.0.7\n"
+"X-Poedit-SearchPath-0: .\n"
+
+
+msgid "All entries"
+msgstr "Alle Einträge"
+
+msgid "New entry"
+msgstr "Neuen Eintrag"
+
+msgid "Add new entry"
+msgstr "Neuen Eintrag hinzufügen"
+
+msgid "Edit entry"
+msgstr "Eintrag bearbeiten"
+
+msgid "Show entry"
+msgstr "Eintrag anzeigen"
+
+msgid "Search entries"
+msgstr "Einträge suchen"
+
+msgid "No entry found"
+msgstr "Kein Eintrag gefunden"
+
+msgid "No entry found in trash"
+msgstr "Kein Eintrag im Papierkorb gefunden"
+
+msgid "Parent entry"
+msgstr "Übergeordneter Eintrag"
+
+msgid "Insert into this entry"
+msgstr "Dies im Eintrag einfügen"
+
+msgid "Usage"
+msgstr "Verwendung"
+
+msgid "Yes"
+msgstr "Ja"
+
+msgid "No"
+msgstr "Nein"
+
+msgid "Mon"
+msgstr "Mo"
+
+msgid "Tue"
+msgstr "Di"
+
+msgid "Wed"
+msgstr "Mi"
+
+msgid "Thu"
+msgstr "Do"
+
+msgid "Fri"
+msgstr "Fr"
+
+msgid "Sat"
+msgstr "Sa"
+
+msgid "Sun"
+msgstr "So"
+
+msgid "Jan"
+msgstr "Jan"
+
+msgid "Feb"
+msgstr "Feb"
+
+msgid "Mar"
+msgstr "Mär"
+
+msgid "Apr"
+msgstr "Apr"
+
+msgid "May"
+msgstr "Mai"
+
+msgid "Jun"
+msgstr "Jun"
+
+msgid "Jul"
+msgstr "Jul"
+
+msgid "Aug"
+msgstr "Aug"
+
+msgid "Sep"
+msgstr "Sep"
+
+msgid "Oct"
+msgstr "Okt"
+
+msgid "Nov"
+msgstr "Nov"
+
+msgid "Dec"
+msgstr "Dez"
+
+msgid "January"
+msgstr "Jänner"
+
+msgid "February"
+msgstr "Februar"
+
+msgid "March"
+msgstr "März"
+
+msgid "April"
+msgstr "April"
+
+msgid "June"
+msgstr "Juni"
+
+msgid "July"
+msgstr "Juli"
+
+msgid "August"
+msgstr "August"
+
+msgid "September"
+msgstr "September"
+
+msgid "October"
+msgstr "Oktober"
+
+msgid "November"
+msgstr "November"
+
+msgid "December"
+msgstr "Dezember"
+
+msgid "Store PDF text for search"
+msgstr "PDF-Texte für Suche speichern"
+
+msgid "Show list of media links"
+msgstr "Medien-Verlinkungen anzeigen"
+
+msgid "Post type"
+msgstr "Posttyp"
+
+msgid "Activate PDF content cache"
+msgstr "PDF Inhalts-Cache aktivieren"
+
+msgid "Track all media links in posts"
+msgstr "Alle Verlinkungen von Medien in Posts mitloggen"
+
+msgid "iService Media links"
+msgstr "iService Medien-Verlinkung"
+
+msgid "Media links page"
+msgstr "Medienverlinkungs-Seite"
+
+msgid "Media links"
+msgstr "Medien-Verlinkung"
+
+msgid "File"
+msgstr "Datei"
+
+msgid "Post name"
+msgstr "Postname"
+
+msgid "Post type"
+msgstr "Posttyp"
+
+msgid "Usage type"
+msgstr "Verwendungsart"
+
+msgid "Field ID"
+msgstr "Feld ID"
+
+msgid "Field type"
+msgstr "Feldart"
+
+msgid "Files"
+msgstr "Dateien"
+
+msgid "Showing page _PAGE_ of _PAGES_"
+msgstr "Seite _PAGE_ von _PAGES_"
+
+msgid "No media links available"
+msgstr "Keine Medienverlinkungen vorhanden"
+
+msgid "(filtered from _MAX_ total media links)"
+msgstr "(gefilterte Medienverlinkungen von _MAX_)"
+
+msgid "Show _MENU_ media links per page"
+msgstr "Zeige _MENU_ Medienverlinkungen pro Seite"
+
+msgid "Nothing found."
+msgstr "Keine Treffer."
+
+msgid "First"
+msgstr "Erste"
+
+msgid "Previous"
+msgstr "Zurück"
+
+msgid "Next"
+msgstr "Nächste"
+
+msgid "Last"
+msgstr "Letzte"
+
+msgid "Search"
+msgstr "Suchen"
+
+msgid "Mime type"
+msgstr "Mime-Typ"
+
+msgid "File date"
+msgstr "Datei-Datum"
+
+msgid "Post date"
+msgstr "Post-Datum"
+
+msgid "Usage"
+msgstr "Verwendung"
+
+msgid "Visable columns"
+msgstr "Sichtbare Spalten"
+
+msgid ""
+msgstr ""

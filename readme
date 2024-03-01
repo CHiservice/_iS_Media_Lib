@@ -1,0 +1,13 @@
+Git Clone in
+	[..]/wp-content/themes/matchING/src/_iS_Media_Lib
+
+Needed Plugins:
+	-/-
+
+Composer installieren
+	cd [..]/wp-content/themes/matchING/src/_iS_Media_Lib/php/lib/composer
+	composer install
+
+"Gulpen"
+	cd [..]/wp-content/themes/matchING/src
+	gulp --Module:iS_Media_Lib

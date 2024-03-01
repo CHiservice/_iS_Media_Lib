@@ -1,0 +1,84 @@
+@import 'base/variables';
+@import 'base/fonts';
+
+@import 'components/data.table';
+
+#adminmenu .toplevel_page_media-tracking .wp-menu-image::before,
+#adminmenu .toplevel_page_pdf-list .wp-menu-image::before {
+	color: $iservice;
+	content: '\e993';
+	font-family: 'iservice';
+} // #adminmenu .toplevel_page_iservice .wp-menu-image::before
+
+.is-media-lib-tracking-list,
+.is-media-lib-pdf-list {
+	.show-hide  {
+		margin-bottom: 30px;
+
+		li {
+			background-color: $pagination-button-current-bg;
+			border: solid $pagination-button-border 1px;
+			cursor: pointer;
+			display: inline;
+			padding: 5px;
+			text-align: center;
+			width: 30px;
+
+			&.active {
+				background-color: $pagination-button-bg;
+			}
+		} // li
+	} // .show-hide
+
+	#is_media_lib_tracking_list_wrapper {
+		@extend %data-table;
+
+		.special-filter {
+			label {
+				display: inline-block;
+				width: 70px;
+			} // label
+			
+			select {
+				width: 200px;
+			}
+		} // .special-filter
+
+		.dataTables_filter > label {
+			position: relative;
+
+			input {
+				left: 70px;
+				position: absolute;
+				width: 200px;
+			} // input
+		} // .dataTables_filter > label
+
+		tbody {
+			i.usage-type {
+				&::after {
+					font-family: 'media-lib';
+					font-size: 30px;
+					font-style: normal;
+					line-height: 30px;
+				} // &::after
+
+				&.thumbnail::after {
+					content: '\e902';
+				}
+
+				&.content::after {
+					content: '\e903';
+				}
+
+				&.metabox::after {
+					content: '\e904';
+				}
+			} // i.usage-type
+
+			img {
+				width: 100%;
+			}
+		} // tbody
+	} // #is_media_lib_tracking_list
+} // .is-media-lib-tracking-list, is-media-lib-pdf-list

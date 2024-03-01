@@ -1,0 +1,8 @@
+$iservice: #f0bf79;
+$pagination-button-border: #c3c4c7;
+$pagination-button-bg: #fff;
+$pagination-button-current-bg: #f0f0f1;
+
+@mixin gen-var($var, $val) {
+    #{$var}: $val;
+}
