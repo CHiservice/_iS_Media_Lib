@@ -26,7 +26,7 @@ class iS_Media_Lib_PDF_List {
 				"l18n"           => array(
 					"info"            => esc_html__("Showing page _PAGE_ of _PAGES_", $this->config->get("modulName")),
 					"info_empty"      => esc_html__("No PDF caches available", $this->config->get("modulName")),
-					"info_filtered"   => esc_html__("(filtered from _MAX_ total media PDFs)", $this->config->get("modulName")),
+					"info_filtered"   => esc_html__("(filtered from _MAX_ total PDFs)", $this->config->get("modulName")),
 					"length_menu"     => esc_html__("Show _MENU_ PDFs per page", $this->config->get("modulName")),
 					"zero_records"    => esc_html__("Nothing found.", $this->config->get("modulName")),
 					"first"           => esc_html__("First", $this->config->get("modulName")),
@@ -36,8 +36,8 @@ class iS_Media_Lib_PDF_List {
 					"search"          => esc_html__("Search", $this->config->get("modulName")),
 				),
 				"cols"           => array(
-					array("id" => "file", "name" => esc_html__("PDF", $this->config->get("modulName")), "visable" => true, "formatter" => "file"),
-					array("id" => "file_date", "name" => esc_html__("File date", $this->config->get("modulName")), "visable" => true, "width" => "150px", "formatter" => "date"),
+					array("id" => "file", "name" => esc_html__("PDF", $this->config->get("modulName")), "visible" => true, "formatter" => "file"),
+					array("id" => "file_date", "name" => esc_html__("File date", $this->config->get("modulName")), "visible" => true, "width" => "150px", "formatter" => "date"),
 				),
 			),
 		);

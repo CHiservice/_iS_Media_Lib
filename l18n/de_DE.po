@@ -236,5 +236,44 @@ msgstr "Verwendung"
 msgid "Visable columns"
 msgstr "Sichtbare Spalten"
 
+msgid "Status"
+msgstr "Status"
+
+msgid "PDFs in Cache."
+msgstr "PDFs im Cache."
+
+msgid ""No PDF caches available"
+msgstr "Keine PDFs gecaches"
+
+msgid "(filtered from _MAX_ total PDFs)"
+msgstr "(gefilterte PDFs von _MAX_)"
+
+msgid "Show _MENU_ PDFs per page"
+msgstr "Zeige _MENU_ PDFs pro Seite"
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
 msgid ""
 msgstr ""

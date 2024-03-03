@@ -1,3 +1,5 @@
 
 .DS_Store
 /php/lib/composer/vendor/*
+/js/*
+!js/lib/*

@@ -30,12 +30,44 @@ class iS_Media_Lib_Settings {
 			$checkbox = new Setting_Checkbox("is_media_track_attachment_".$cpt, esc_html__("Post type", $this->config->get("modulName")).": ".$pt_name, self::$pageId, $this->section_cpt_id, self::$groupId);
 		}
 
-		add_action("admin_init", array($this, "init_tracking_for_existing"));
-		add_action("admin_init", array($this, "init_pdf_cache_for_existing"));
+		add_action("rest_api_init", function () {
+			// "/register/(?P<id>\d+)/(?P<number>[a-zA-Z0-9-]+)"
+			register_rest_route("is_media_lib/", "init_tracking", array(
+				"methods"  => "GET",
+				"callback" => array($this, "init_tracking_for_existing"),
+			));
+			register_rest_route("is_media_lib/", "init_pdf_cache", array(
+				"methods"  => "GET",
+				"callback" => array($this, "init_pdf_cache_for_existing"),
+			));
+		});
+
 	} // __construct
 
 	function enqueue_scripts() {
+		$pts  = array();
+		$cpts = iS_General_CPT::get_all_cpts();
+		foreach ($cpts as $cpt) {
+			$pt_name  = $cpt;
+			$postType = get_post_type_object($cpt);
+			if ($postType) {
+				$pt_name = esc_html($postType->labels->singular_name);
+			}
+
+			$pts[$cpt] = $pt_name;
+		}
+
 		wp_enqueue_style("is_media_lib_settings_css", STYLESHEETURL."/".$this->config->get("modulName")."/css/settings.min.css", array(), $this->config->get("version"));
+		wp_enqueue_script("is_media_lib_settings_js", STYLESHEETURL."/".$this->config->get("modulName")."/js/settings.min.js", array("jquery"), $this->config->get("version"), true);
+		wp_localize_script(
+			"is_media_lib_settings_js",
+			"is_media_lib_settings_js_vars",
+			array(
+				"ajax_url" => esc_url(home_url())."/wp-json/is_media_lib/",
+				"pts"      => $pts,
+			),
+		);
+
 	} // enqueue_scripts()
 
 	public function add_settings_page() {
@@ -49,10 +81,22 @@ class iS_Media_Lib_Settings {
 	} // add_settings_page()
 
 	public function add_sections() {
-		add_settings_section($this->section_pdf_id, esc_html__("Activate PDF content cache", $this->config->get("modulName")), array($this, "section_callback"), self::$pageId);
+		add_settings_section($this->section_pdf_id, esc_html__("Activate PDF content cache", $this->config->get("modulName")), array($this, "section_pdf_callback"), self::$pageId);
 		add_settings_section($this->section_tracking_id, esc_html__("Media links page", $this->config->get("modulName")), array($this, "section_callback"), self::$pageId);
-		add_settings_section($this->section_cpt_id, esc_html__("Track all media links in posts", $this->config->get("modulName")), array($this, "section_callback"), self::$pageId);
+		add_settings_section($this->section_cpt_id, esc_html__("Track all media links in posts", $this->config->get("modulName")), array($this, "section_media_tracking_callback"), self::$pageId);
 	} // add_sections()
+
+	public function section_pdf_callback() {
+		echo '<div class="media-lib-pdf-cache-status hidden">';
+			echo esc_html__("Status", $this->config->get("modulName")).': <div class="count">0</div>'.esc_html__("PDFs in Cache.", $this->config->get("modulName"));
+		echo '</div>';
+	} // section_pdf_callback()
+
+	public function section_media_tracking_callback() {
+		echo '<div class="media-lib-media-tracking-status hidden">';
+			echo esc_html__("Status", $this->config->get("modulName")).': <div class="counts"></div>';
+		echo '</div>';
+	} // section_media_tracking_callback()
 
 	public function section_callback() {
 		echo "";
@@ -106,21 +150,46 @@ class iS_Media_Lib_Settings {
 		$lib        = new iS_Media_Lib_Tracking();
 		$active_pts = iS_Media_Lib_Settings::get_enabled_media_tracking_pts();
 		$cpts       = iS_General_CPT::get_all_cpts();
-		$status     = get_option("is_media_init_track_attachment");
+		$status     = get_option("is_media_init_track_attachment"); // last done id
+		$statistic  = get_option("is_media_init_track_attachment_statistic"); // how much done
+
 		if(!is_array($status)) {
 			$status = array();
 		}
 
+		if(!is_array($statistic)) {
+			$statistic = array();
+		}
+
 		foreach ($cpts as $cpt) {
+			if(!array_key_exists($cpt, $statistic)) {
+				$statistic[$cpt] = null;
+			}
+
 			if(!in_array($cpt, $active_pts)) {
 				// init for posttype done? -> clear all
-				if(!array_key_exists($cpt, $status) || $status[$cpt] == "done" || (int) $status[$cpt] != 0) {
+				if(array_key_exists($cpt, $statistic) && is_array($statistic[$cpt]) && array_key_exists(0, $statistic[$cpt]) && $statistic[$cpt][0] > 0) {
 					$lib->clear_post_type($cpt);
 					$status[$cpt] = 0;
 					update_option("is_media_init_track_attachment", $status);
+					$statistic[$cpt][0] = 0;
+					update_option("is_media_init_track_attachment_statistic", $statistic);
 				}
+				$statistic[$cpt] = null;
+				update_option("is_media_init_track_attachment_statistic", $statistic);
 			} else {
-				if(!array_key_exists($cpt, $status) || $status[$cpt] != "done") {
+				if(is_array($statistic[$cpt]) == false || count($statistic[$cpt]) < 2) {
+					$statistic[$cpt] = array(0, 0);
+				}
+
+				// could be more than before
+				$sql = "SELECT
+						COUNT(1)
+					FROM `".$wpdb->prefix."posts` AS `p` 
+					WHERE `p`.`post_type` = '".$cpt."'";
+				$statistic[$cpt][1] = (int) $GLOBALS["wpdb"]->get_var($sql);
+
+				if($statistic[$cpt][0] < $statistic[$cpt][1]) {
 					// init next package
 					$sql = "SELECT
 							*
@@ -135,44 +204,67 @@ class iS_Media_Lib_Settings {
 							$lib->save_data($post->ID, $post);
 							$status[$cpt] = $post->ID;
 							update_option("is_media_init_track_attachment", $status);
+							$statistic[$cpt][0] = min($statistic[$cpt][0]+1, $statistic[$cpt][1]);
+							update_option("is_media_init_track_attachment_statistic", $statistic);
 						}
-					} else {
-						$status[$cpt] = "done";
-						update_option("is_media_init_track_attachment", $status);
 					}
 				}
 			}
 		}
+
+		return $statistic;
 	} // init_tracking_for_existing()
 
 	public function init_pdf_cache_for_existing() {
 		global $wpdb;
 
-		$lib    = new iS_Media_Lib_PDF_Content_Cache();
-		$status = get_option("is_media_init_pdf_cache");
+		$lib       = new iS_Media_Lib_PDF_Content_Cache();
+		$active    = iS_Media_Lib_Settings::is_pdf_content_cache_enabled();
+		$status    = get_option("is_media_init_pdf_cache");
+		$statistic = get_option("is_media_init_pdf_cache_statistic");
 
-		if($status == "done") {
-			return;
+		if(!is_array($statistic)) {
+			$statistic = array(0, 0);
 		}
 
-		// init next package
-		$sql = "SELECT
-				*
-			FROM `".$wpdb->prefix."posts` AS `p` 
-			WHERE ID > ".max(0, (int) $status)."
-			AND `p`.`post_type` = 'attachment'
-			AND `p`.`post_mime_type` = 'application/pdf'
-			LIMIT 10";
-		$data = $GLOBALS["wpdb"]->get_results($sql);
-		if(is_array($data) && count($data) > 0) {
-			foreach ($data as $post) {
-				$lib->insert_pdf_chache($post->ID);
-				$status = $post->ID;
-				update_option("is_media_init_pdf_cache", $status);
-			}
-		} else {
+		if($active != 1 && $statistic[0] > 0) {
+			$statistic = array(0, 0);
 			$status = "done";
 			update_option("is_media_init_pdf_cache", $status);
+			update_option("is_media_init_pdf_cache_statistic", $statistic);
+		} else {
+			// could be more than before
+			$sql = "SELECT
+					COUNT(1)
+				FROM `".$wpdb->prefix."posts` AS `p` 
+				WHERE `p`.`post_type` = 'attachment'
+				AND `p`.`post_mime_type` = 'application/pdf'";
+			$statistic[1] = (int) $GLOBALS["wpdb"]->get_var($sql);
+
+			// init next package
+			$sql = "SELECT
+					*
+				FROM `".$wpdb->prefix."posts` AS `p` 
+				WHERE ID > ".max(0, (int) $status)."
+				AND `p`.`post_type` = 'attachment'
+				AND `p`.`post_mime_type` = 'application/pdf'
+				LIMIT 10";
+			$data = $GLOBALS["wpdb"]->get_results($sql);
+			if(is_array($data) && count($data) > 0) {
+				foreach ($data as $post) {
+					$lib->insert_pdf_chache($post->ID);
+					$status = $post->ID;
+					update_option("is_media_init_pdf_cache", $status);
+					$statistic[0]++;
+					$statistic[0] = min($statistic[0]+1, $statistic[1]);
+					update_option("is_media_init_pdf_cache_statistic", $statistic);
+				}
+			} else {
+				$status = "done";
+				update_option("is_media_init_pdf_cache", $status);
+			}
 		}
+
+		return array("status" => $status, "statistic" => $statistic);
 	} // init_pdf_cache_for_existing()
 } // iS_Media_Lib_Settings{}
