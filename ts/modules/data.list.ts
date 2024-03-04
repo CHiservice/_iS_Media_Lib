@@ -34,7 +34,7 @@ export default class DataList {
 			var li            = document.createElement("li");
 			li.textContent    = this.settings.cols[i]["name"];
 			li.dataset.column = this.settings.cols[i]["id"];
-			if(this.settings.cols[i]["visable"] == true ) {
+			if(this.settings.cols[i]["visible"] == true ) {
 				li.classList.add("active");
 			}
 			this.$hide_buttons[0].append(li);

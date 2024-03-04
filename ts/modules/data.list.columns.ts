@@ -14,6 +14,7 @@ export function get_columns(columns: [], lang: string = "en", media_edit_url: st
 
 	let Columns : Column[] = [];
 	for (var i = 0, tmp_count = columns.length; i < tmp_count; ++i) {
+		
 		var col : Column = {
 			"data"    : columns[i]["id"],
 			"visible" : columns[i]["visible"],
