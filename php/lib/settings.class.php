@@ -61,13 +61,12 @@ class iS_Media_Lib_Settings {
 		wp_enqueue_script("is_media_lib_settings_js", STYLESHEETURL."/".$this->config->get("modulName")."/js/settings.min.js", array("jquery"), $this->config->get("version"), true);
 		wp_localize_script(
 			"is_media_lib_settings_js",
-			"is_media_lib_settings_js_vars",
+			"is_media_lib_settings_vars",
 			array(
 				"ajax_url" => esc_url(home_url())."/wp-json/is_media_lib/",
 				"pts"      => $pts,
 			),
 		);
-
 	} // enqueue_scripts()
 
 	public function add_settings_page() {

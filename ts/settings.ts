@@ -1,8 +1,8 @@
 (function ($) {
 	// @ts-ignore
-	var ajax_url          : string = is_media_lib_settings_js_vars.ajax_url;
+	var ajax_url          : string = is_media_lib_settings_vars.ajax_url;
 	// @ts-ignore
-	var pt_names          : any = is_media_lib_settings_js_vars.pts;
+	var pt_names          : any = is_media_lib_settings_vars.pts;
 	var $pdf_cache_status = $('.media-lib-pdf-cache-status');
 	var $tracking_status  = $('.media-lib-media-tracking-status');
 

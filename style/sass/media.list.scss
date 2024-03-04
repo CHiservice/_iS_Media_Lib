@@ -2,6 +2,7 @@
 @import 'base/fonts';
 
 @import 'components/data.table';
+@import 'components/usage.type';
 
 #adminmenu .toplevel_page_media-tracking .wp-menu-image::before,
 #adminmenu .toplevel_page_pdf-list .wp-menu-image::before {
@@ -56,24 +57,7 @@
 
 		tbody {
 			i.usage-type {
-				&::after {
-					font-family: 'media-lib';
-					font-size: 30px;
-					font-style: normal;
-					line-height: 30px;
-				} // &::after
-
-				&.thumbnail::after {
-					content: '\e902';
-				}
-
-				&.content::after {
-					content: '\e903';
-				}
-
-				&.metabox::after {
-					content: '\e904';
-				}
+				@extend %usage-type;
 			} // i.usage-type
 
 			img {

@@ -20,6 +20,10 @@ class iS_Media_Lib_Tracking {
 				"methods"  => "POST",
 				"callback" => array($this, "search_tracking"),
 			));
+			register_rest_route("is_media_lib/", "tracking/(?P<id>\d+)", array(
+				"methods"  => "GET",
+				"callback" => array($this, "get_tracking"),
+			));
 		});
 	} // __construct
 
@@ -321,12 +325,12 @@ class iS_Media_Lib_Tracking {
 	public static function get_mime_types() {
 		global $wpdb;
 		$query = "SELECT 
-			`p`.`post_mime_type`
-		FROM `".$wpdb->prefix."posts` AS `p`
-		LEFT JOIN `".$wpdb->prefix.iS_Media_Lib_Tracking::$tracking_table."` AS `t` ON `t`.`attachment_id` = `p`.`ID`
-		WHERE `t`.`attachment_id`
-		GROUP BY `p`.`post_mime_type`
-		ORDER BY `p`.`post_mime_type`";
+				`p`.`post_mime_type`
+			FROM `".$wpdb->prefix."posts` AS `p`
+			LEFT JOIN `".$wpdb->prefix.iS_Media_Lib_Tracking::$tracking_table."` AS `t` ON `t`.`attachment_id` = `p`.`ID`
+			WHERE `t`.`attachment_id` IS NOT NULL
+			GROUP BY `p`.`post_mime_type`
+			ORDER BY `p`.`post_mime_type`";
 
 		$dataArr = $GLOBALS["wpdb"]->get_results($query, ARRAY_A);
 		$result = array();
@@ -338,4 +342,33 @@ class iS_Media_Lib_Tracking {
 
 		return $result;
 	} // get_mime_types()
+
+	public function get_tracking($data) {
+		global $wpdb;
+		$query = "SELECT 
+				*
+			FROM `".$wpdb->prefix.iS_Media_Lib_Tracking::$tracking_table."` AS `t`
+			LEFT JOIN `".$wpdb->prefix."posts` AS `p` ON `t`.`post_id` = `p`.`ID`
+
+			WHERE `t`.`attachment_id` = ".$data["id"];
+		$dataArr = $GLOBALS["wpdb"]->get_results($query, ARRAY_A);
+		
+		$result  = array();
+		foreach($dataArr AS $data) {
+			$pt_name  = $data["post_type"];
+			$postType = get_post_type_object($data["post_type"]);
+			if ($postType) {
+				$pt_name = esc_html($postType->labels->singular_name);
+			}
+
+			$result[] = array(
+				"href" => esc_url(home_url())."/wp-admin/post.php?action=edit&post=".$data["post_id"],
+				"post_title" => $data["post_title"],
+				"post_type"  => $pt_name,
+				"usage_type" => $data["usage_type"],
+			);
+		}
+
+		return $result;
+	}
 } // iS_Media_Lib_Tracking{}

@@ -1,0 +1,16 @@
+@import 'base/variables';
+@import 'base/fonts';
+
+@import 'components/usage.type';
+
+.table-view-list.media .tracking_detail {
+	cursor: pointer;
+}
+
+.modal_box {
+	> div {
+		i.usage-type {
+			@extend %usage-type;
+		} // i.usage-type
+	} // > div
+} // .modal_box

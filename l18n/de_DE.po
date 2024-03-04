@@ -152,9 +152,6 @@ msgstr "PDF-Texte für Suche speichern"
 msgid "Show list of media links"
 msgstr "Medien-Verlinkungen anzeigen"
 
-msgid "Post type"
-msgstr "Posttyp"
-
 msgid "Activate PDF content cache"
 msgstr "PDF Inhalts-Cache aktivieren"
 
@@ -168,7 +165,7 @@ msgid "Media links page"
 msgstr "Medienverlinkungs-Seite"
 
 msgid "Media links"
-msgstr "Medien-Verlinkung"
+msgstr "Medien-Verlinkungen"
 
 msgid "File"
 msgstr "Datei"
@@ -230,9 +227,6 @@ msgstr "Datei-Datum"
 msgid "Post date"
 msgstr "Post-Datum"
 
-msgid "Usage"
-msgstr "Verwendung"
-
 msgid "Visable columns"
 msgstr "Sichtbare Spalten"
 
@@ -242,7 +236,7 @@ msgstr "Status"
 msgid "PDFs in Cache."
 msgstr "PDFs im Cache."
 
-msgid ""No PDF caches available"
+msgid "No PDF caches available"
 msgstr "Keine PDFs gecaches"
 
 msgid "(filtered from _MAX_ total PDFs)"
@@ -251,29 +245,8 @@ msgstr "(gefilterte PDFs von _MAX_)"
 msgid "Show _MENU_ PDFs per page"
 msgstr "Zeige _MENU_ PDFs pro Seite"
 
-msgid ""
-msgstr ""
+msgid "Media link"
+msgstr "Medien-Verlinkung"
 
-msgid ""
-msgstr ""
-
-msgid ""
-msgstr ""
-
-msgid ""
-msgstr ""
-
-msgid ""
-msgstr ""
-
-msgid ""
-msgstr ""
-
-msgid ""
-msgstr ""
-
-msgid ""
-msgstr ""
-
-msgid ""
-msgstr ""
+msgid "Post title"
+msgstr "Posttitel"
