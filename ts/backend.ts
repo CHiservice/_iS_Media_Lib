@@ -31,22 +31,18 @@
 	);
 	var $modal = $('#modal-overlay');
 
-	function unique_id(){
-		return Date.now().toString(36) + Math.random().toString(36);
-	} // unique_id();
-
 	$(".table-view-list.media .tracking_detail").on("click touch", (e) => {
 		e.preventDefault();
 		$modal.find(".modal_box tbody").empty();
 
 		var id = e.target.dataset["id"];
-		if(parseInt(e.target.dataset["count"]) == 0) {
+		if(e.target.dataset["count"] == undefined || parseInt(e.target.dataset["count"]) == 0) {
 			return;
 		}
 		// @ts-ignore
 		var ajax_url = is_media_lib_backend_vars.ajax_url;
 		$.ajax({
-			url     : ajax_url + id + "/?no_cache=" + unique_id(),
+			url     : ajax_url + id + "/?no_cache=" + Date.now().toString(36) + Math.random().toString(36),
 			type    : "GET",
 			success : function (response) {
 				if(response && response.length > 0) {

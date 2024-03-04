@@ -12,10 +12,10 @@ class iS_Media_Lib_PDF_List {
 	} // __construct()
 
 	function enqueue_scripts() {
-		wp_enqueue_script("jquery_data_tables_js", STYLESHEETURL."/".$this->config->get("modulName")."/js/lib/jquery.dataTables.js", array("jquery"), "1.0", true);
+		$handles = iS_General_Enqueue_Lib::js("jquery.dataTables");
 		
 		wp_enqueue_style("is_media_lib_media_list_css", STYLESHEETURL."/".$this->config->get("modulName")."/css/media.list.min.css", array(), $this->config->get("version"));
-		wp_enqueue_script("is_media_lib_pdf_list_js", STYLESHEETURL."/".$this->config->get("modulName")."/js/pdf.list.min.js", array("jquery", "jquery_data_tables_js"), $this->config->get("version"), true);
+		wp_enqueue_script("is_media_lib_pdf_list_js", STYLESHEETURL."/".$this->config->get("modulName")."/js/pdf.list.min.js", $handles, $this->config->get("version"), true);
 		wp_localize_script(
 			"is_media_lib_pdf_list_js",
 			"is_media_lib_pdf_list_vars",
