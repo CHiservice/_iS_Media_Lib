@@ -25,6 +25,8 @@ class iS_Media_Lib_Settings {
 			$postType = get_post_type_object($cpt);
 			if ($postType) {
 				$pt_name = esc_html($postType->labels->singular_name);
+			} else {
+				$pt_name = esc_html__(strtoupper(substr($cpt, 0, 1)).substr($cpt, 1), $this->config->get("modulName"));
 			}
 
 			$checkbox = new Setting_Checkbox("is_media_track_attachment_".$cpt, esc_html__("Post type", $this->config->get("modulName")).": ".$pt_name, self::$pageId, $this->section_cpt_id, self::$groupId);
@@ -52,6 +54,8 @@ class iS_Media_Lib_Settings {
 			$postType = get_post_type_object($cpt);
 			if ($postType) {
 				$pt_name = esc_html($postType->labels->singular_name);
+			} else {
+				$pt_name = esc_html__(strtoupper(substr($cpt, 0, 1)).substr($cpt, 1), $this->config->get("modulName"));
 			}
 
 			$pts[$cpt] = $pt_name;

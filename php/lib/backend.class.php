@@ -47,6 +47,8 @@ class iS_Media_Lib_Backend {
 			$postType = get_post_type_object($cpt);
 			if ($postType) {
 				$pt_name = esc_html($postType->labels->singular_name);
+			} else {
+				$pt_name = esc_html__(strtoupper(substr($cpt, 0, 1)).substr($cpt, 1), $this->config->get("modulName"));
 			}
 
 			$pts[$cpt] = $pt_name;

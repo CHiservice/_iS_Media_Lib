@@ -250,3 +250,6 @@ msgstr "Medien-Verlinkung"
 
 msgid "Post title"
 msgstr "Posttitel"
+
+msgid "Project"
+msgstr "Projekt"
