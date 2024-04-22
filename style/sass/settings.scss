@@ -1,3 +1,12 @@
 #menu-settings .iservice-settings-menu-sub.media-lib .logo::before {
 	content: '\e993';
 }
+
+#iservice-media_lib .form-table {
+	th {
+		padding: 5px 10px 0 0;
+	}
+	td {
+		padding: 0 10px;
+	}
+} // #iservice-media_lib .form-table {
