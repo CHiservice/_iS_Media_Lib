@@ -110,13 +110,7 @@ class iS_Media_Lib_Media_List {
 		$pts           = array();
 		$available_pts = iS_General_CPT::get_all_cpts();
 		foreach ($available_pts as $cpt) {
-			$pt_name  = $cpt;
-			$postType = get_post_type_object($cpt);
-			if ($postType) {
-				$pt_name = esc_html($postType->labels->singular_name);
-			}
-
-			$pts[$cpt] = $pt_name;
+			$pts[$cpt] = iS_General_Settings::get_translated_pt_name($cpt);
 		}
 
 		return $pts;

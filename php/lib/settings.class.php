@@ -21,14 +21,7 @@ class iS_Media_Lib_Settings {
 
 		$cpts = iS_General_CPT::get_all_cpts();
 		foreach ($cpts as $cpt) {
-			$pt_name  = $cpt;
-			$postType = get_post_type_object($cpt);
-			if ($postType) {
-				$pt_name = esc_html($postType->labels->singular_name);
-			} else {
-				$pt_name = esc_html__(strtoupper(substr($cpt, 0, 1)).substr($cpt, 1), $this->config->get("modulName"));
-			}
-
+			$pt_name  = iS_General_Settings::get_translated_pt_name($cpt);
 			$checkbox = new Setting_Checkbox("is_media_track_attachment_".$cpt, esc_html__("Post type", $this->config->get("modulName")).": ".$pt_name, self::$pageId, $this->section_cpt_id, self::$groupId);
 		}
 
@@ -50,15 +43,7 @@ class iS_Media_Lib_Settings {
 		$pts  = array();
 		$cpts = iS_General_CPT::get_all_cpts();
 		foreach ($cpts as $cpt) {
-			$pt_name  = $cpt;
-			$postType = get_post_type_object($cpt);
-			if ($postType) {
-				$pt_name = esc_html($postType->labels->singular_name);
-			} else {
-				$pt_name = esc_html__(strtoupper(substr($cpt, 0, 1)).substr($cpt, 1), $this->config->get("modulName"));
-			}
-
-			$pts[$cpt] = $pt_name;
+			$pts[$cpt] = iS_General_Settings::get_translated_pt_name($cpt);
 		}
 
 		wp_enqueue_style("is_media_lib_settings_css", STYLESHEETURL."/".$this->config->get("modulName")."/css/settings.min.css", array(), $this->config->get("version"));
