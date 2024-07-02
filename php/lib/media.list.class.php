@@ -20,9 +20,9 @@ class iS_Media_Lib_Media_List {
 			"is_media_lib_media_list_js",
 			"is_media_lib_media_list_vars",
 			array(
-				"search_url"     => esc_url(home_url())."/wp-json/is_media_lib/tracking",
-				"media_edit_url" => esc_url(home_url())."/wp-admin/post.php?action=edit&post=",
-				"post_edit_url"  => esc_url(home_url())."/wp-admin/post.php?action=edit&post=",
+				"search_url"     => esc_url(get_option("home"))."/wp-json/is_media_lib/tracking", // avoid wpml lang in url
+				"media_edit_url" => esc_url(get_option("home"))."/wp-admin/post.php?action=edit&post=",
+				"post_edit_url"  => esc_url(get_option("home"))."/wp-admin/post.php?action=edit&post=",
 				"lang"           => get_locale(),
 				"l18n"           => array(
 					"info"            => esc_html__("Showing page _PAGE_ of _PAGES_", $this->config->get("modulName")),

@@ -53,7 +53,7 @@ class iS_Media_Lib_Backend {
 			"is_media_lib_backend_js",
 			"is_media_lib_backend_vars",
 			array(
-				"ajax_url" => esc_url(home_url())."/wp-json/is_media_lib/tracking/",
+				"ajax_url" => esc_url(get_option("home"))."/wp-json/is_media_lib/tracking/", // avoid wpml lang in url
 				"l18n"     => array(
 					"post_title" => esc_html__("Post title", $this->config->get("modulName")),
 					"post_type" => esc_html__("Post type", $this->config->get("modulName")),

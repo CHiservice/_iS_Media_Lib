@@ -20,8 +20,8 @@ class iS_Media_Lib_PDF_List {
 			"is_media_lib_pdf_list_js",
 			"is_media_lib_pdf_list_vars",
 			array(
-				"search_url"     => esc_url(home_url())."/wp-json/is_media_lib/pdf",
-				"media_edit_url" => esc_url(home_url())."/wp-admin/post.php?action=edit&post=",
+				"search_url"     => esc_url(get_option("home"))."/wp-json/is_media_lib/pdf", // avoid wpml lang in url
+				"media_edit_url" => esc_url(get_option("home"))."/wp-admin/post.php?action=edit&post=", // avoid wpml lang in url
 				"lang"           => get_locale(),
 				"l18n"           => array(
 					"info"            => esc_html__("Showing page _PAGE_ of _PAGES_", $this->config->get("modulName")),
