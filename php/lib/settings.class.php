@@ -27,11 +27,11 @@ class iS_Media_Lib_Settings {
 
 		add_action("rest_api_init", function () {
 			// "/register/(?P<id>\d+)/(?P<number>[a-zA-Z0-9-]+)"
-			register_rest_route("is_media_lib/", "init_tracking", array(
+			register_rest_route("is_media_lib", "init_tracking", array(
 				"methods"  => "GET",
 				"callback" => array($this, "init_tracking_for_existing"),
 			));
-			register_rest_route("is_media_lib/", "init_pdf_cache", array(
+			register_rest_route("is_media_lib", "init_pdf_cache", array(
 				"methods"  => "GET",
 				"callback" => array($this, "init_pdf_cache_for_existing"),
 			));

@@ -16,11 +16,11 @@ class iS_Media_Lib_Tracking {
 
 		add_action("rest_api_init", function () {
 			// "/register/(?P<id>\d+)/(?P<number>[a-zA-Z0-9-]+)"
-			register_rest_route("is_media_lib/", "tracking", array(
+			register_rest_route("is_media_lib", "tracking", array(
 				"methods"  => "POST",
 				"callback" => array($this, "search_tracking"),
 			));
-			register_rest_route("is_media_lib/", "tracking/(?P<id>\d+)", array(
+			register_rest_route("is_media_lib", "tracking/(?P<id>\d+)", array(
 				"methods"  => "GET",
 				"callback" => array($this, "get_tracking"),
 			));

@@ -14,7 +14,7 @@ class iS_Media_Lib_PDF_Content_Cache {
 
 		add_action("rest_api_init", function () {
 			// "/register/(?P<id>\d+)/(?P<number>[a-zA-Z0-9-]+)"
-			register_rest_route("is_media_lib/", "pdf", array(
+			register_rest_route("is_media_lib", "pdf", array(
 				"methods"  => "POST",
 				"callback" => array($this, "search_pdf"),
 			));
